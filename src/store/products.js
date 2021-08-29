@@ -8,11 +8,6 @@ export default {
 	getters: {
 		all: state => state.items,
 		one: state => id => state.items.find(pr => pr.id == id),
-		/* one(state){
-			return function(id){
-				return state.items.find(pr => pr.id == id);
-			}
-		}*/
 	},
 	mutations: {
 		setItems(state, items){

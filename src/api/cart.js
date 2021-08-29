@@ -1,7 +1,7 @@
 import http from '@/api/http';
 
 export async function load(token){
-	let { data } = await http.get('cart/load1.php', { params: { token }});
+	let { data } = await http.get('cart/load.php', { params: { token }});
 	return data;
 }
 

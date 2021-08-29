@@ -4,11 +4,11 @@ export default {
 	async load({ commit }){
 		let savedToken = localStorage.getItem('cartToken');
 		let { token, needUpdate, cart } = await cartApi.load(savedToken);
-		
+
 		if(needUpdate){
 			localStorage.setItem('cartToken', token);
 		}
-			
+		
 		commit('set', { cart, token });
 	},
 	async add({ state, getters, commit }, { id }){
@@ -51,7 +51,6 @@ export default {
 }
 
 /*
-
 async add({ state, getters, commit, dispatch }, { id }){
 		if(getters.canAdd(id)){
 			commit('startProccess', id);

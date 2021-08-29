@@ -22,7 +22,8 @@ addErrorHandler(function(error){
 
 	if('errorAlert' in config){
 		store.dispatch('alerts/add', { 
-			text: 'Ошибка ответа от сервера ' + config.errorAlert
+			text: 'Ошибка ответа от сервера ' + config.errorAlert,
+			timeout: 3000
 		});
 
 		return false;

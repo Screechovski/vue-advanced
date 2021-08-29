@@ -2,7 +2,7 @@
 	<div id="app" class="grid-box">
 		<header class="mt-3">
 			<div class="container">
-				{{ alerts }}
+				<Alerts />
 				<div class="row justify-content-between">
 					<div class="col flex-norm">
 						<div class="h3">Sample site</div>
@@ -49,6 +49,7 @@
 
 <script>
 	import { mapGetters } from 'vuex';
+	import Alerts from '@/components/Alerts';
 
 	export default {
 		data(){
@@ -63,7 +64,9 @@
 		},
 		computed: {
 			...mapGetters('cart', {cartCount: 'totalCnt', cartTotal: 'totalSum'}),
-			...mapGetters('alerts', { alerts: 'all' })
+		},
+		components: {
+			Alerts
 		}
 	}
 </script>
@@ -101,5 +104,4 @@
 		from{transform: rotateY(0deg);}
 		to{transform: rotateY(90deg);}
 	}
-
 </style>
