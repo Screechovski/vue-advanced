@@ -11,9 +11,9 @@ server.use('/js', express.static(path.resolve(__dirname, './dist/js')));
 server.use('/img', express.static(path.resolve(__dirname, './dist/img')));
 server.use('/favicon.ico', express.static(path.resolve(__dirname, './dist/favicon.ico')));
 
-server.get('*', function(request, response){
-	let app = serverBundle();
-	
+server.get('*', async function(request, response){
+	let app = await serverBundle({url:request.url});
+
 	renderToString(app).then(
 		html => {
 			let page = template.replace('<!--ssr-here-->', html);
@@ -25,7 +25,6 @@ server.get('*', function(request, response){
 		}
 	)
 	// template.replace('<div id="app"></div>', hmtl)
-	
 });
 
 server.listen(3000);

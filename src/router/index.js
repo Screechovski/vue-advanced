@@ -19,7 +19,7 @@ const routes = [
 console.log(process.isServer);
 
 const router = createRouter({
-  history: createMemoryHistory(),
+  history: process.isServer ? createMemoryHistory() : createWebHistory(process.env.BASE_URL),
   routes
 })
 
