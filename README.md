@@ -1,4 +1,4 @@
-# va-2021-08
+# vue-ssr-simple
 
 ## Project setup
 ```

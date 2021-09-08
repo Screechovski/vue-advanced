@@ -1,107 +1,33 @@
 <template>
-	<div id="app" class="grid-box">
-		<header class="mt-3">
-			<div class="container">
-				<Alerts />
-				<div class="row justify-content-between">
-					<div class="col flex-norm">
-						<div class="h3">Sample site</div>
-						<div class="">About some and other products</div>
-					</div>
-					<div class="col flex-norm">
-						<div>In Cart: {{ cartCount }}</div>
-						<div>Total: {{ cartTotal }}</div>
-					</div>
-				</div>
-				<hr>
-				<nav class="navbar navbar-expand p-0">
-					<ul class="navbar-nav">
-						<li v-for="item in menuItems" :key="item.route" class="nav-item">
-							<router-link
-								:to="{name: item.route}"
-								class="nav-link"
-								active-class="active"
-								:exact="item.exact"
-							>{{item.title}}</router-link>
-						</li>
-					</ul>
-				</nav>
-				<hr>
-			</div>
-		</header>
-		<section>
-			<div class="container">
-				<router-view v-slot="{ Component }">
-					<transition name="slide" mode="out-in">
-						<component :is="Component" />
-					</transition>
-				</router-view>
-			</div>
-		</section>
-		<footer class="mb-3">
-			<div class="container">
-				<hr>
-				<div>&copy; Rights not found</div>
-			</div>
-		</footer>
-	</div>
+  <div id="nav">
+    <router-link to="/">Home</router-link> |
+    <router-link to="/about">About</router-link>
+  </div>
+  <hr>
+  {{ $store.state.num }}
+  <hr>
+  <router-view/>
 </template>
 
-<script>
-	import { mapGetters } from 'vuex';
-	import Alerts from '@/components/Alerts';
-
-	export default {
-		data(){
-			return {
-				menuItems: [
-					{ route: 'products', title: 'Products', exact: true },
-					{ route: 'cart', title: 'Cart', exact: true },
-					{ route: 'checkout', title: 'Checkout', exact: true },
-					/* { route: 'office', title: 'Office', exact: false } */
-				]
-			}
-		},
-		computed: {
-			...mapGetters('cart', {cartCount: 'totalCnt', cartTotal: 'totalSum'}),
-		},
-		components: {
-			Alerts
-		}
-	}
-</script>
-
 <style>
-	.grid-box{
-		display: grid;
-		grid-template-rows: auto 1fr auto;
-		min-height: 100vh;
-	}
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
 
-	.flex-norm{
-		flex: 0 1 auto !important;
-		width: auto !important;
-	}
+#nav {
+  padding: 30px;
+}
 
-	a.active{
-		color: red !important;
-	}
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
 
-	.slide-enter-active{
-		animation: slideIn 0.3s;
-	}
-
-	.slide-leave-active{
-		animation: slideOut 0.3s;
-	}
-
-	@keyframes slideIn{
-		from{transform: rotateY(90deg);}
-		to{transform: rotateY(0deg);}
-	}
-
-	@keyframes slideOut{
-		from{transform: rotateY(0deg);}
-		to{transform: rotateY(90deg);}
-	}
+#nav a.router-link-exact-active {
+  color: #42b983;
+}
 </style>

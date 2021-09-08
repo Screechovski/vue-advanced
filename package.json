@@ -1,15 +1,20 @@
 {
-  "name": "va-2021-08",
+  "name": "vue-ssr-simple",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build:client": "vue-cli-service build",
+    "build:server": "vue-cli-service build --no-clean --server",
+    "build": "npm run build:client && npm run build:server",
+    "devbuild:client": "vue-cli-service build --mode development",
+    "devbuild:server": "vue-cli-service build --no-clean --server --mode development",
+    "devbuild": "npm run devbuild:client && npm run devbuild:server"
   },
   "dependencies": {
-    "axios": "^0.21.1",
-    "bootstrap": "^5.1.0",
+    "@vue/server-renderer": "^3.2.9",
     "core-js": "^3.6.5",
+    "express": "^4.17.1",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
@@ -19,7 +24,8 @@
     "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
-    "@vue/compiler-sfc": "^3.0.0"
+    "@vue/compiler-sfc": "^3.0.0",
+    "webpack-node-externals": "^3.0.0"
   },
   "browserslist": [
     "> 1%",
